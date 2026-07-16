@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sm_renamer_rule_list" model="ir.ui.view">
+        <field name="name">sm.renamer.rule.list</field>
+        <field name="model">sm.renamer.rule</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="current_name"/>
+                <field name="new_name"/>
+                <field name="model_id" options="{'no_create': True}" placeholder="All Models"/>
+                <field name="lang" placeholder="All Languages"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sm_renamer_rule_form" model="ir.ui.view">
+        <field name="name">sm.renamer.rule.form</field>
+        <field name="model">sm.renamer.rule</field>
+        <field name="arch" type="xml">
+            <form string="Renamer Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="current_name"/>
+                            <field name="new_name"/>
+                        </group>
+                        <group>
+                            <field name="model_id" options="{'no_create': True}" placeholder="All Models"/>
+                            <field name="lang" placeholder="All Languages"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sm_renamer_rule_search" model="ir.ui.view">
+        <field name="name">sm.renamer.rule.search</field>
+        <field name="model">sm.renamer.rule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="current_name"/>
+                <field name="new_name"/>
+                <field name="model_id"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Model" name="group_model" context="{'group_by': 'model_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sm_renamer_rule" model="ir.actions.act_window">
+        <field name="name">Renamer Rules</field>
+        <field name="res_model">sm.renamer.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first rename rule
+            </p>
+            <p>
+                Set the current label and the new label. Leave the model empty
+                to apply the rename everywhere, or pick a model to limit it.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sm_renamer_root"
+              name="Renamer"
+              parent="base.menu_administration"
+              action="action_sm_renamer_rule"
+              groups="sm_odoo_renamer.group_renamer_manager"
+              sequence="60"/>
+</odoo>
