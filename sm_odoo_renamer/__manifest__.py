@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Odoo Renamer: Fields, Buttons & Tabs",
+    "name": "Odoo Renamer Fields, Buttons & Tabs",
     "version": "16.0.1.0.0",
     "category": "Extra Tools",
     "summary": "Rename field labels, button texts and tab names without writing a single line of code, globally or per model, per language.",
